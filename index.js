@@ -19,6 +19,7 @@ class Driver {
     }
 
     passengers() {
+        // Manual searching and pushing
         let driverTrips = this.trips();
         let passengerIds = []
         let passengersArr = []
@@ -47,17 +48,10 @@ class Passenger {
     }
 
     drivers() {
-        let passengerTrips = this.trips();
-        let driverIds = []
-        let driversArr = []
-        passengerTrips.forEach(function(trip) {
-            driverIds.push(trip.driverId);
-        });
-        for (let i = 0; i < driverIds.length; i++) {
-          let drivers = store.drivers.find(driver => driver.id === driverIds[i] )
-          driversArr.push(drivers);
-        }
-        return driversArr;
+        // Makes use of existing functions
+        return this.trips().map(trip => {
+            return trip.driver();
+        })
     }
 }
 
